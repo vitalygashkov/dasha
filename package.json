@@ -1,0 +1,14 @@
+{
+  "name": "dasha",
+  "version": "1.0.0",
+  "description": "Simple MPEG-DASH MPD parser",
+  "main": "dasha.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
