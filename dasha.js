@@ -1,4 +1,4 @@
 module.exports = {
-  ...require('./lib/dash'),
+  ...require('./lib/manifest'),
   ...require('./lib/xml'),
 };
