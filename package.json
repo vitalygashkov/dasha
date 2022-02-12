@@ -6,7 +6,11 @@
   "author": "vitnore",
   "main": "dasha.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint \"**/*.js\" --fix",
+    "lint:check": "eslint \"**/*.js\"",
+    "format": "prettier --loglevel warn --write \"**/*.{ts,js,json,yaml}\"",
+    "format:check": "prettier --loglevel warn --check \"**/*.{ts,js,json,yaml}\""
   },
   "devDependencies": {
     "@types/node": "^17.0.17",
