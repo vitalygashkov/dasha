@@ -1,4 +1,4 @@
 module.exports = {
   ...require('./lib/manifest'),
-  ...require('./lib/xml'),
+  ...require('./lib/constants'),
 };
