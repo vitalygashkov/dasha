@@ -1,6 +1,6 @@
 {
   "name": "dasha",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Simple MPEG-DASH MPD parser",
   "license": "Apache-2.0",
   "author": "vitnore",
