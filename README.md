@@ -20,7 +20,7 @@ npm i
 **Parse manifest and get tracks with selected video height**
 
 ```javascript
-const { Dash } = require('./dasha');
+const { parseManifest } = require('./dasha');
 
 const rawManifest = `
   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -28,27 +28,32 @@ const rawManifest = `
     ...
   </MPD>
 `
-const dash = new Dash();
-dash.parseManifest(rawManifest);
-
-const height = 1080;
-const duration = 1438;
-const videoTracks = dash.getTracks({ contentType: 'video', height, duration });
-const audioTracks = dash.getTracks({ contentType: 'audio', height, duration });
-const tracks = [...videoTracks, ...audioTracks];
+const manifest = parseManifest(rawManifest);
+const targetHeight = 1080;
+const targetAudioLanguages = ['rus']
+const videoTrack = manifest.getVideoTrack(targetHeight);
+const audioTracks = manifest.getAudioTracks(targetAudioLanguages);
+const tracks = [videoTrack, ...audioTracks];
 ```
 
-**Track structure**
+**Tracks structure**
 
 ```typescript
-type Track = {
-  type: "audio" | "video",
+type VideoTrack = {
+  type: "video",
   segments: { url: string, init: boolean }[],
   bitrate: number, // Kbps
-  size: number | null, // MB
-  width: number | null,
-  height: number | null,
-  quality: "SD" | "HD" | "Full HD" | null,
-  audioSampleRate: number | null // kHz
+  size: number, // MB
+  width: number,
+  height: number,
+  quality: "SD" | "HD" | "Full HD",
+}
+
+type AudioTrack = {
+  type: "audio",
+  segments: { url: string, init: boolean }[],
+  bitrate: number, // Kbps
+  size: number, // MB
+  audioSampleRate: number // kHz
 }
 ```
