@@ -7,6 +7,7 @@
   "main": "dasha.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "types": "tsc -p tsconfig.json",
     "lint": "eslint \"**/*.js\" --fix",
     "lint:check": "eslint \"**/*.js\"",
     "format": "prettier --loglevel warn --write \"**/*.{ts,js,json,yaml}\"",
@@ -18,6 +19,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
-    "prettier": "^2.5.1"
+    "prettier": "^2.5.1",
+    "typescript": "^4.5.5"
   }
 }
