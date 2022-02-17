@@ -3,6 +3,7 @@ import { QualityLabel } from './utils';
 
 declare class Manifest extends ProcessedManifest {
   constructor(manifest: ProcessedManifest);
+
   getVideoTrack(height: number): VideoTrack;
   getAudioTracks(languages: string[]): AudioTrack[];
   getSubtitleTracks(languages: string[]): SubtitleTrack[];
