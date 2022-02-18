@@ -1,6 +1,6 @@
 {
   "name": "dasha",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "author": "Vitaliy Gashkov <vitnore@gmail.com>",
   "description": "Simple MPEG-DASH MPD parser",
   "license": "Apache-2.0",
