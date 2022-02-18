@@ -17,6 +17,10 @@
     "lib",
     "types"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitnore/dasha.git"
+  },
   "funding": {
     "type": "patreon",
     "url": "https://www.patreon.com/vitnore"
