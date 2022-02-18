@@ -18,7 +18,7 @@
     "types"
   ],
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest",
     "types": "tsc -p tsconfig.json",
     "lint": "eslint \"**/*.js\" --fix",
     "lint:check": "eslint \"**/*.js\"",
@@ -31,6 +31,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.4",
     "eslint-plugin-prettier": "^4.0.0",
+    "jest": "^27.5.1",
     "prettier": "^2.5.1",
     "typescript": "^4.5.5"
   }

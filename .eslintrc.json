@@ -5,5 +5,13 @@
   "rules": {
     "arrow-parens": ["error", "always"],
     "no-unused-vars": "warn"
-  }
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.js"],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }
