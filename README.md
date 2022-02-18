@@ -1,23 +1,15 @@
 # Dasha
 
+[![npm version](https://img.shields.io/npm/v/dasha)](https://www.npmjs.com/package/dasha)
+[![npm downloads/month](https://img.shields.io/npm/dm/dasha)](https://www.npmjs.com/package/dasha)
+[![npm downloads](https://img.shields.io/npm/dt/dasha)](https://www.npmjs.com/package/dasha)
+
 Dasha is a simple parser for MPD manifests.
 
-## Installing
+## Usage
 
-**Requirements**
-
-- [Node.js](https://nodejs.org) v16 or greater
-- npm v8
-
-**Install dependencies**
-
-```bash
-npm i
-```
-
-## Usage examples
-
-**Parse manifest and get tracks with selected video height**
+- Install: `npm install dasha`
+- Require: `const { parseManifest } = require('dasha');`
 
 ```javascript
 const { parseManifest } = require('./dasha');
@@ -27,33 +19,31 @@ const rawManifest = `
   <MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     ...
   </MPD>
-`
+`;
 const manifest = parseManifest(rawManifest);
 const targetHeight = 1080;
-const targetAudioLanguages = ['rus']
+const targetAudioLanguages = ['rus'];
 const videoTrack = manifest.getVideoTrack(targetHeight);
 const audioTracks = manifest.getAudioTracks(targetAudioLanguages);
 const tracks = [videoTrack, ...audioTracks];
 ```
 
-**Tracks structure**
-
 ```typescript
 type VideoTrack = {
-  type: "video",
-  segments: { url: string, init: boolean }[],
-  bitrate: number, // Kbps
-  size: number, // MB
-  width: number,
-  height: number,
-  quality: "SD" | "HD" | "Full HD",
-}
+  type: 'video';
+  segments: { url: string; init: boolean }[];
+  bitrate: number; // Kbps
+  size: number; // MB
+  width: number;
+  height: number;
+  quality: 'SD' | 'HD' | 'Full HD' | '4K' : '8K';
+};
 
 type AudioTrack = {
-  type: "audio",
-  segments: { url: string, init: boolean }[],
-  bitrate: number, // Kbps
-  size: number, // MB
-  audioSampleRate: number // kHz
-}
+  type: 'audio';
+  segments: { url: string; init: boolean }[];
+  bitrate: number; // Kbps
+  size: number; // MB
+  audioSampleRate: number; // kHz
+};
 ```
