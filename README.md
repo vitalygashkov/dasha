@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/dasha)](https://www.npmjs.com/package/dasha)
 [![npm downloads/month](https://img.shields.io/npm/dm/dasha)](https://www.npmjs.com/package/dasha)
 [![npm downloads](https://img.shields.io/npm/dt/dasha)](https://www.npmjs.com/package/dasha)
+[![license](https://img.shields.io/npm/l/dasha)](https://github.com/vitnore/dasha/blob/main/LICENSE)
 
 Dasha is a simple parser for MPD manifests.
 
