@@ -17,6 +17,10 @@
     "lib",
     "types"
   ],
+  "funding": {
+    "type": "patreon",
+    "url": "https://www.patreon.com/vitnore"
+  },
   "scripts": {
     "test": "jest",
     "types": "tsc -p tsconfig.json",
