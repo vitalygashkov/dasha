@@ -1,8 +1,8 @@
 {
   "name": "dasha",
-  "version": "2.2.6",
-  "author": "Vitaliy Gashkov <vitnore@gmail.com>",
-  "description": "Parser of MPD-manifests for MPEG DASH",
+  "version": "2.3.0",
+  "author": "Vitaly Gashkov <vitalygashkov@outlook.com>",
+  "description": "MPD-manifest parser for MPEG DASH",
   "license": "Apache-2.0",
   "keywords": [
     "mpeg",
@@ -19,11 +19,11 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/vitnore/dasha.git"
+    "url": "git+https://github.com/vitalygashkov/dasha.git"
   },
   "funding": {
     "type": "individual",
-    "url": "https://boosty.to/vitnore"
+    "url": "https://boosty.to/vitalygashkov"
   },
   "scripts": {
     "test": "jest",
