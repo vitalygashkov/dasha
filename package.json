@@ -1,7 +1,7 @@
 {
   "name": "dasha",
-  "version": "2.3.0",
-  "author": "Vitaly Gashkov <vitalygashkov@outlook.com>",
+  "version": "2.3.1",
+  "author": "Vitaly Gashkov <vitalygashkov@bk.ru>",
   "description": "MPD-manifest parser for MPEG DASH",
   "license": "Apache-2.0",
   "keywords": [

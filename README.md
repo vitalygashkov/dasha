@@ -37,7 +37,7 @@ type VideoTrack = {
   size: number; // MB
   width: number;
   height: number;
-  quality: 'SD' | 'HD' | 'Full HD' | '4K' : '8K';
+  qualityLabel: '144p' | '240p' | '360p' | '480p' | '576p' | '720p' | '1080p' | '2160p';
 };
 
 type AudioTrack = {
