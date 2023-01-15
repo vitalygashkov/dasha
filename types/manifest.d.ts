@@ -34,9 +34,13 @@ interface VideoTrack extends MediaTrack {
 interface AudioTrack extends MediaTrack {
   type: 'audio';
   audioSampleRate: number;
+  language: string;
 }
 
-interface SubtitleTrack {}
+interface SubtitleTrack extends MediaTrack {
+  type: 'text';
+  language: string;
+}
 
 interface Segment {
   url: string;
@@ -45,4 +49,4 @@ interface Segment {
 
 declare const parseManifest: (text: string) => Manifest | null;
 
-export { parseManifest, Manifest, VideoTrack, AudioTrack };
+export { parseManifest, Manifest, VideoTrack, AudioTrack, SubtitleTrack };
