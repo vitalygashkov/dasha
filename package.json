@@ -3,7 +3,7 @@
   "version": "2.3.6",
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "MPD-manifest parser for MPEG DASH",
-  "license": "Apache-2.0",
+  "license": "GNU GPLv3",
   "keywords": [
     "mpeg",
     "dash",
@@ -11,20 +11,31 @@
     "mpd",
     "manifest"
   ],
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vitalygashkov/dasha"
+  },
+  "bugs": {
+    "url": "https://github.com/vitalygashkov/dasha/issues",
+    "email": "vitalygashkov@vk.com"
+  },
   "main": "dasha.js",
   "types": "types/dasha.d.ts",
+  "funding": [
+    {
+      "type": "individual",
+      "url": "https://boosty.to/vitalygashkov/donate"
+    },
+    {
+      "type": "patreon",
+      "url": "https://www.patreon.com/vitalygashkov"
+    }
+  ],
   "files": [
     "lib",
     "types"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vitalygashkov/dasha.git"
-  },
-  "funding": {
-    "type": "individual",
-    "url": "https://boosty.to/vitalygashkov"
-  },
   "scripts": {
     "test": "jest",
     "types": "tsc -p tsconfig.json",
