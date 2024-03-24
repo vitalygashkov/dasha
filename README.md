@@ -1,19 +1,21 @@
-# Dasha
+# dasha
 
-[![npm version](https://img.shields.io/npm/v/dasha)](https://www.npmjs.com/package/dasha)
-[![npm downloads/month](https://img.shields.io/npm/dm/dasha)](https://www.npmjs.com/package/dasha)
-[![npm downloads](https://img.shields.io/npm/dt/dasha)](https://www.npmjs.com/package/dasha)
-[![license](https://img.shields.io/npm/l/dasha)](https://github.com/vitnore/dasha/blob/main/LICENSE)
+[![npm version](https://img.shields.io/npm/v/dasha?style=flat&color=blue)](https://www.npmjs.com/package/dasha)
+[![npm downloads/month](https://img.shields.io/npm/dm/dasha?style=flat&color=blue)](https://www.npmjs.com/package/dasha)
+[![npm downloads](https://img.shields.io/npm/dt/dasha?style=flat&color=blue)](https://www.npmjs.com/package/dasha)
 
-Dasha is a simple parser for MPD manifests.
+A tool for parsing DASH manifests.
 
-## Usage
+## Install
 
-- Install: `npm install dasha`
-- Require: `const { parseManifest } = require('dasha');`
+```
+$ npm i dasha
+```
 
-```javascript
-const { parseManifest } = require('./dasha');
+## Quick start
+
+```js
+const { parseManifest } = require('dasha');
 
 const rawManifest = `
   <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
