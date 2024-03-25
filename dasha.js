@@ -46,6 +46,29 @@ const trackDto = (data, duration) => {
     segments: segmentsDto(data.segments),
   };
   if (data.attributes.RESOLUTION) result.resolution = data.attributes.RESOLUTION;
+  if (data.language) result.language = data.language;
+  if (data.contentProtection) {
+    result.protection = {};
+    if (data.contentProtection?.mp4protection)
+      result.protection.common = {
+        id: data.contentProtection.mp4protection.attributes.schemeIdUri,
+        value: data.contentProtection.mp4protection.attributes.value,
+        keyId: data.contentProtection.mp4protection.attributes['cenc:default_KID'],
+      };
+    if (data.contentProtection['com.microsoft.playready'])
+      result.protection.playready = {
+        id: data.contentProtection['com.microsoft.playready'].attributes.schemeIdUri,
+        value: data.contentProtection['com.microsoft.playready'].attributes.value,
+        pssh: Buffer.from(data.contentProtection['com.microsoft.playready'].pssh).toString(
+          'base64'
+        ),
+      };
+    if (data.contentProtection['com.widevine.alpha'])
+      result.protection.widevine = {
+        id: data.contentProtection['com.widevine.alpha'].attributes.schemeIdUri,
+        pssh: Buffer.from(data.contentProtection['com.widevine.alpha'].pssh).toString('base64'),
+      };
+  }
   return result;
 };
 
@@ -53,7 +76,7 @@ const audioDto = (data) => {
   const result = [];
   if (!data) return result;
   for (const [key, value] of Object.entries(data)) {
-    result.push(...value.playlists);
+    result.push(...value.playlists.map((item) => ({ ...item, language: value.language })));
   }
   return result;
 };
@@ -62,7 +85,7 @@ const subsDto = (data) => {
   const result = [];
   if (!data) return result;
   for (const [key, value] of Object.entries(data)) {
-    result.push(...value.playlists);
+    result.push(...value.playlists.map((item) => ({ ...item, language: value.language })));
   }
   return result;
 };
@@ -77,7 +100,6 @@ const parseMpd = (manifestString, manifestUri) => {
     contentSteering: parsedManifestInfo.contentSteeringInfo,
     eventStream: parsedManifestInfo.eventStream,
   });
-  manifest.allPlaylists = playlists;
 
   const toTrackWithSize = (data) => trackDto(data, manifest.duration);
   const videoPlaylists = manifest.playlists;
@@ -91,7 +113,6 @@ const parseMpd = (manifestString, manifestUri) => {
       subtitles: subtitlePlaylists.map(toTrackWithSize),
     },
   };
-
   return mpd;
 };
 
@@ -103,9 +124,9 @@ const parseM3U8 = (manifestString) => {
   return manifest;
 };
 
-const parse = (text, url, eventHandler) => {
-  if (text.includes('MPD')) return parseMpd(text, url, eventHandler);
-  else if (text.includes('#EXTM3U')) return parseM3U8(text);
+const parse = (body, url) => {
+  if (body.includes('<MPD')) return parseMpd(body, url);
+  else if (body.includes('#EXTM3U')) return parseM3U8(body);
   else return null;
 };
 
@@ -222,8 +243,6 @@ const getSubtitleTracks = (manifest, languages = []) => {
 
 module.exports = {
   parse,
-  parseMpd,
-  parseM3U8,
   getPssh,
   getVideoTrack,
   getAudioTracks,
