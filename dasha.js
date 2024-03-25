@@ -1,12 +1,13 @@
 'use strict';
 
-const { inheritAttributes, stringToMpdXml, toPlaylists, toM3u8 } = require('mpd-parser');
+const m3u8Parser = require('m3u8-parser');
+const mpdParser = require('mpd-parser');
 
-const parse = (text, url, eventHandler) => {
-  const options = { manifestUri: url, eventHandler };
-  const parsedManifestInfo = inheritAttributes(stringToMpdXml(text), options);
-  const playlists = toPlaylists(parsedManifestInfo.representationInfo);
-  const manifest = toM3u8({
+const parseMpd = (manifestString, manifestUri) => {
+  const xml = mpdParser.stringToMpdXml(manifestString);
+  const parsedManifestInfo = mpdParser.inheritAttributes(xml, { manifestUri });
+  const playlists = mpdParser.toPlaylists(parsedManifestInfo.representationInfo);
+  const manifest = mpdParser.toM3u8({
     dashPlaylists: playlists,
     locations: parsedManifestInfo.locations,
     contentSteering: parsedManifestInfo.contentSteeringInfo,
@@ -14,6 +15,20 @@ const parse = (text, url, eventHandler) => {
   });
   manifest.allPlaylists = playlists;
   return manifest;
+};
+
+const parseM3U8 = (manifestString) => {
+  const parser = new m3u8Parser.Parser();
+  parser.push(manifestString);
+  parser.end();
+  const manifest = parser.manifest;
+  return manifest;
+};
+
+const parse = (text, url, eventHandler) => {
+  if (text.includes('MPD')) return parseMpd(text, url, eventHandler);
+  else if (text.includes('#EXTM3U')) return parseM3U8(text);
+  else return null;
 };
 
 const getBestPlaylist = (playlists) => {
@@ -139,6 +154,8 @@ const getSubtitleTracks = (manifest, languages = []) => {
 
 module.exports = {
   parse,
+  parseMpd,
+  parseM3U8,
   getPssh,
   getVideoTrack,
   getAudioTracks,
