@@ -3,6 +3,70 @@
 const m3u8Parser = require('m3u8-parser');
 const mpdParser = require('mpd-parser');
 
+const segmentsDto = (data) => {
+  const segments =
+    data.map((segment) => ({
+      url: segment.resolvedUri,
+    })) || [];
+  if (data.length && data[0].map?.resolvedUri)
+    segments.unshift({ url: data[0].map.resolvedUri, init: true });
+  return segments;
+};
+
+const formatBytes = (bytes, sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB']) => {
+  if (bytes == 0) return `0 ${sizes[0]}`;
+  const i = parseInt(Math.floor(Math.log(bytes) / Math.log(1024)));
+  if (i == 0) return bytes + ' ' + sizes[i];
+  return (bytes / Math.pow(1024, i)).toFixed(1) + ' ' + sizes[i];
+};
+
+const trackDto = (data, duration) => {
+  const bandwidth = data.attributes.BANDWIDTH;
+  const result = {
+    id: data.attributes.NAME,
+    codecs: data.attributes.CODECS,
+    bandwidth: {
+      bps: bandwidth,
+      kbps: bandwidth / 1024,
+      mbps: bandwidth / 8e6,
+      gbps: bandwidth / 8e9,
+      toString() {
+        return formatBytes(bandwidth, ['bps', 'Kbps', 'Mbps', 'Gbps']);
+      },
+    },
+    size: {
+      b: bandwidth * duration,
+      kb: (bandwidth / 1024) * duration,
+      mb: (bandwidth / 8e6) * duration,
+      gb: (bandwidth / 8e9) * duration,
+      toString() {
+        return formatBytes(bandwidth * duration);
+      },
+    },
+    segments: segmentsDto(data.segments),
+  };
+  if (data.attributes.RESOLUTION) result.resolution = data.attributes.RESOLUTION;
+  return result;
+};
+
+const audioDto = (data) => {
+  const result = [];
+  if (!data) return result;
+  for (const [key, value] of Object.entries(data)) {
+    result.push(...value.playlists);
+  }
+  return result;
+};
+
+const subsDto = (data) => {
+  const result = [];
+  if (!data) return result;
+  for (const [key, value] of Object.entries(data)) {
+    result.push(...value.playlists);
+  }
+  return result;
+};
+
 const parseMpd = (manifestString, manifestUri) => {
   const xml = mpdParser.stringToMpdXml(manifestString);
   const parsedManifestInfo = mpdParser.inheritAttributes(xml, { manifestUri });
@@ -14,7 +78,21 @@ const parseMpd = (manifestString, manifestUri) => {
     eventStream: parsedManifestInfo.eventStream,
   });
   manifest.allPlaylists = playlists;
-  return manifest;
+
+  const toTrackWithSize = (data) => trackDto(data, manifest.duration);
+  const videoPlaylists = manifest.playlists;
+  const audioPlaylists = audioDto(manifest.mediaGroups.AUDIO.audio);
+  const subtitlePlaylists = subsDto(manifest.mediaGroups.SUBTITLES.subs);
+  const mpd = {
+    duration: manifest.duration,
+    tracks: {
+      videos: videoPlaylists.map(toTrackWithSize),
+      audios: audioPlaylists.map(toTrackWithSize),
+      subtitles: subtitlePlaylists.map(toTrackWithSize),
+    },
+  };
+
+  return mpd;
 };
 
 const parseM3U8 = (manifestString) => {
@@ -46,16 +124,6 @@ const getPssh = (manifest) => {
   return getPlaylistPssh(playlist);
 };
 
-const getSegments = (playlist) => {
-  const segments =
-    playlist.segments.map((segment) => ({
-      url: segment.resolvedUri,
-    })) || [];
-  if (playlist.segments.length && playlist.segments[0].map?.resolvedUri)
-    segments.unshift({ url: playlist.segments[0].map.resolvedUri, init: true });
-  return segments;
-};
-
 const qualities = [
   { width: 7680, height: 4320 },
   { width: 3840, height: 2160 },
@@ -81,7 +149,7 @@ const getVideoTrack = (manifest, height) => {
   };
 
   const playlist = manifest.playlists.find(matchHeight) || getBestPlaylist(manifest.playlists);
-  const segments = getSegments(playlist);
+  const segments = segmentsDto(playlist);
   const qualityLabel = getQualityLabel(playlist.attributes.RESOLUTION);
 
   return {
@@ -110,7 +178,7 @@ const getAudioTracks = (manifest, languages = []) => {
 
   return audios.map((audio, index) => {
     const playlist = getBestPlaylist(audio.playlists);
-    const segments = getSegments(playlist);
+    const segments = segmentsDto(playlist);
     const label = Object.entries(audioCollection).find(([_, value]) => value === audio)?.[0];
     return {
       type: 'audio',
@@ -136,7 +204,7 @@ const getSubtitleTracks = (manifest, languages = []) => {
   });
   return subs.map((sub, index) => {
     const playlist = getBestPlaylist(sub.playlists);
-    const segments = getSegments(playlist);
+    const segments = segmentsDto(playlist);
     const label = Object.entries(subCollection).find(([_, value]) => value === sub)?.[0];
     const originalPlaylist = manifest.allPlaylists.find((p) => p.attributes.label === label);
     const language = originalPlaylist?.attributes.lang || sub.language;
