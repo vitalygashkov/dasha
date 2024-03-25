@@ -54,6 +54,7 @@ const qualities = [
 ];
 const getWidth = (height) => qualities.find((q) => q.height === height)?.width;
 const getHeight = (width) => qualities.find((q) => q.width === width)?.height;
+const getQualityLabel = (resolution) => `${getHeight(resolution.width) || resolution.height}p`;
 
 const getVideoTrack = (manifest, height) => {
   const matchHeight = (playlist) => {
@@ -66,9 +67,7 @@ const getVideoTrack = (manifest, height) => {
 
   const playlist = manifest.playlists.find(matchHeight) || getBestPlaylist(manifest.playlists);
   const segments = getSegments(playlist);
-  const qualityLabel = `${
-    getHeight(playlist.attributes.RESOLUTION.width) || playlist.attributes.RESOLUTION.height
-  }p`;
+  const qualityLabel = getQualityLabel(playlist.attributes.RESOLUTION);
 
   return {
     type: 'video',
@@ -138,4 +137,11 @@ const getSubtitleTracks = (manifest, languages = []) => {
   });
 };
 
-module.exports = { parse, getPssh, getVideoTrack, getAudioTracks, getSubtitleTracks };
+module.exports = {
+  parse,
+  getPssh,
+  getVideoTrack,
+  getAudioTracks,
+  getSubtitleTracks,
+  getQualityLabel,
+};
