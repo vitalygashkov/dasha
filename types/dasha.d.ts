@@ -1,4 +1,4 @@
-export function parse(body: string, url: string): Manifest;
+export function parse(body: string, url: string): Promise<Manifest>;
 
 export interface Manifest {
   duration: number;
@@ -42,20 +42,22 @@ export interface Segment {
   url: string;
   init?: boolean;
   duration: number;
-  number: number;
-  presentationTime: number;
+  number?: number;
+  presentationTime?: number;
 }
 
 export interface TrackProtection {
   common?: { id: string; value: 'cenc' | 'cbcs'; keyId?: string };
   playready?: { id: string; pssh: string; value?: string };
   widevine?: { id: string; pssh: string };
+  fairplay?: { keyFormat: string; uri: string; method: string };
 }
 
 export interface VideoTrack extends Track {
   codecs: string;
   resolution: Resolution;
   quality: '144p' | '240p' | '360p' | '480p' | '720p' | '1080p' | '2160p' | '4320p';
+  frameRate?: string;
 }
 
 export interface Resolution {

@@ -20,6 +20,6 @@ const { parse } = require('dasha');
 (async () => {
   const url = 'https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd';
   const body = await fetch(url).then((res) => res.text());
-  const manifest = parse(body, url);
+  const manifest = await parse(body, url);
 })();
 ```
