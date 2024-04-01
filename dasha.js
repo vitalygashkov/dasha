@@ -3,9 +3,9 @@
 const dash = require('./lib/dash');
 const hls = require('./lib/hls');
 
-const parse = (body, url) => {
-  if (body.includes('<MPD')) return dash.toTracks(body, url);
-  else if (body.includes('#EXTM3U')) return hls.parseManifest(body, url);
+const parse = (text, url) => {
+  if (text.includes('<MPD')) return dash.parseManifest(text, url);
+  else if (text.includes('#EXTM3U')) return hls.parseManifest(text, url);
   else throw new Error('Invalid manifest');
 };
 
