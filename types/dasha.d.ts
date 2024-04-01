@@ -1,13 +1,13 @@
-export function parse(body: string, url: string): Promise<Manifest>;
+export function parse(text: string, url: string): Promise<Manifest>;
 
 export interface Manifest {
-  duration: number;
+  duration?: number;
   tracks: {
     all: (VideoTrack | AudioTrack | SubtitleTrack)[];
     videos: VideoTrack[];
     audios: AudioTrack[];
     subtitles: SubtitleTrack[];
-    withResolution(resolution: Partial<Resolution>): VideoTrack[];
+    withResolution(resolution: { width?: string; height?: string }): VideoTrack[];
     withVideoQuality(quality: number | string): VideoTrack[];
     withAudioLanguages(languages: string[]): AudioTrack[];
     withSubtitleLanguages(languages: string[]): SubtitleTrack[];
@@ -16,10 +16,10 @@ export interface Manifest {
 
 export interface Track {
   id: string;
-  bitrate: Bitrate;
-  size: Size;
   segments: Segment[];
+  size?: Size;
   protection?: TrackProtection;
+  toString: () => string;
 }
 
 export interface Bitrate {
@@ -40,8 +40,9 @@ export interface Size {
 
 export interface Segment {
   url: string;
+  range?: string;
   init?: boolean;
-  duration: number;
+  duration?: number;
   number?: number;
   presentationTime?: number;
 }
@@ -53,25 +54,35 @@ export interface TrackProtection {
   fairplay?: { keyFormat: string; uri: string; method: string };
 }
 
-export interface VideoTrack extends Track {
-  codecs: string;
-  resolution: Resolution;
-  quality: '144p' | '240p' | '360p' | '480p' | '720p' | '1080p' | '2160p' | '4320p';
-  frameRate?: string;
-}
+export type VideoCodec = 'H.264' | 'H.265' | 'VC-1' | 'VP8' | 'VP9' | 'AV1';
+export type DynamicRange = 'SDR' | 'HLG' | 'HDR10' | 'HDR10+' | 'DV';
 
-export interface Resolution {
+export interface VideoTrack extends Track {
+  codec: VideoCodec;
+  bitrate: Bitrate;
   width: number;
   height: number;
+  quality: '144p' | '240p' | '360p' | '480p' | '720p' | '1080p' | '2160p' | '4320p' | string;
+  dynamicRange: DynamicRange;
+  fps?: string;
+  language?: string;
 }
 
+export type AudioCodec = 'AAC' | 'DD' | 'DD+' | 'OPUS' | 'VORB' | 'DTS' | 'ALAC' | 'FLAC';
+
 export interface AudioTrack extends Track {
-  codecs: string;
+  codec: AudioCodec;
+  bitrate: Bitrate;
   language: string;
+  jointObjectCoding?: number;
+  isDescriptive?: boolean;
   label?: string;
 }
 
+export type SubtitleCodec = 'SRT' | 'SSA' | 'ASS' | 'TTML' | 'VTT' | 'STPP' | 'fTTML' | 'fVTT';
+
 export interface SubtitleTrack extends Track {
+  codec: SubtitleCodec;
   language: string;
   label?: string;
 }
