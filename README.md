@@ -15,11 +15,9 @@ npm i dasha
 ## Quick start
 
 ```js
-const { parse } = require('dasha');
+import { parse } from 'dasha';
 
-(async () => {
-  const url = 'https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd';
-  const body = await fetch(url).then((res) => res.text());
-  const manifest = await parse(body, url);
-})();
+const url = 'https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd';
+const body = await fetch(url).then((res) => res.text());
+const manifest = await parse(body, url);
 ```
