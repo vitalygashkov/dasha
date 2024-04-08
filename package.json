@@ -1,6 +1,6 @@
 {
   "name": "dasha",
-  "version": "3.0.0.alpha.7",
+  "version": "3.0.0-beta.1",
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
   "description": "Parser for MPEG-DASH & HLS manifests",
   "license": "AGPL-3.0",
@@ -48,13 +48,13 @@
     "m3u8-parser": "^7.1.0"
   },
   "devDependencies": {
-    "@types/node": "^20.11.30",
-    "eslint": "^8.12.0",
-    "eslint-config-prettier": "^8.5.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-prettier": "^4.0.0",
+    "@types/node": "^20.12.5",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
     "prettier": "^3.2.5",
     "tsup": "^8.0.2",
-    "typescript": "^5.4.3"
+    "typescript": "^5.4.4"
   }
 }

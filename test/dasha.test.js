@@ -12,6 +12,8 @@ test('getQualityLabel', () => {
 
 const kionUrl =
   'https://offload.kion.ru/htv-rrs.mts.ru/88888888/16/20230707/268697239/268697239.mpd';
+const kionUrl2 =
+  'https://offload.kion.ru/htv-rrs.mts.ru/88888888/16/20240401/268725201/268725201.mpd';
 
 test('DASH parsing', async () => {
   const url = kionUrl;
