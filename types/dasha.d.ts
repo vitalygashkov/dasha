@@ -18,8 +18,9 @@ export interface Track {
   id: string;
   type: 'video' | 'audio' | 'text';
   segments: Segment[];
-  label?: string;
+  bitrate: Bitrate;
   size?: Size;
+  label?: string;
   protection?: TrackProtection;
   toString: () => string;
 }
@@ -60,8 +61,8 @@ export type VideoCodec = 'H.264' | 'H.265' | 'VC-1' | 'VP8' | 'VP9' | 'AV1';
 export type DynamicRange = 'SDR' | 'HLG' | 'HDR10' | 'HDR10+' | 'DV';
 
 export interface VideoTrack extends Track {
+  type: 'video';
   codec: VideoCodec;
-  bitrate: Bitrate;
   width: number;
   height: number;
   quality: '144p' | '240p' | '360p' | '480p' | '720p' | '1080p' | '2160p' | '4320p' | string;
@@ -73,8 +74,8 @@ export interface VideoTrack extends Track {
 export type AudioCodec = 'AAC' | 'DD' | 'DD+' | 'OPUS' | 'VORB' | 'DTS' | 'ALAC' | 'FLAC';
 
 export interface AudioTrack extends Track {
+  type: 'audio';
   codec: AudioCodec;
-  bitrate: Bitrate;
   language: string;
   jointObjectCoding?: number;
   isDescriptive?: boolean;
@@ -83,6 +84,7 @@ export interface AudioTrack extends Track {
 export type SubtitleCodec = 'SRT' | 'SSA' | 'ASS' | 'TTML' | 'VTT' | 'STPP' | 'fTTML' | 'fVTT';
 
 export interface SubtitleTrack extends Track {
+  type: 'text';
   codec: SubtitleCodec;
   language: string;
   isClosedCaption?: boolean;
