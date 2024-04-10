@@ -16,7 +16,9 @@ export interface Manifest {
 
 export interface Track {
   id: string;
+  type: 'video' | 'audio' | 'text';
   segments: Segment[];
+  label?: string;
   size?: Size;
   protection?: TrackProtection;
   toString: () => string;
@@ -76,7 +78,6 @@ export interface AudioTrack extends Track {
   language: string;
   jointObjectCoding?: number;
   isDescriptive?: boolean;
-  label?: string;
 }
 
 export type SubtitleCodec = 'SRT' | 'SSA' | 'ASS' | 'TTML' | 'VTT' | 'STPP' | 'fTTML' | 'fVTT';
@@ -84,7 +85,6 @@ export type SubtitleCodec = 'SRT' | 'SSA' | 'ASS' | 'TTML' | 'VTT' | 'STPP' | 'f
 export interface SubtitleTrack extends Track {
   codec: SubtitleCodec;
   language: string;
-  label?: string;
   isClosedCaption?: boolean;
   isSdh?: boolean;
   isForced?: boolean;
