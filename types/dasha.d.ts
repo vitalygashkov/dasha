@@ -34,10 +34,10 @@ export interface Bitrate {
 }
 
 export interface Size {
-  bps: number;
-  kbps: number;
-  mbps: number;
-  gbps: number;
+  b: number;
+  kb: number;
+  mb: number;
+  gb: number;
   toString: () => string;
 }
 
