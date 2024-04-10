@@ -89,3 +89,5 @@ export interface SubtitleTrack extends Track {
   isSdh?: boolean;
   isForced?: boolean;
 }
+
+export type AnyTrack = VideoTrack | AudioTrack | SubtitleTrack;
