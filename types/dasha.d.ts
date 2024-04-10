@@ -85,4 +85,7 @@ export interface SubtitleTrack extends Track {
   codec: SubtitleCodec;
   language: string;
   label?: string;
+  isClosedCaption?: boolean;
+  isSdh?: boolean;
+  isForced?: boolean;
 }
