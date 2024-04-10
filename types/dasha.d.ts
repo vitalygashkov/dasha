@@ -86,6 +86,7 @@ export type SubtitleCodec = 'SRT' | 'SSA' | 'ASS' | 'TTML' | 'VTT' | 'STPP' | 'f
 export interface SubtitleTrack extends Track {
   type: 'text';
   codec: SubtitleCodec;
+  bitrate?: Bitrate;
   language: string;
   isClosedCaption?: boolean;
   isSdh?: boolean;
