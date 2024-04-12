@@ -9,7 +9,7 @@ export interface Manifest {
     subtitles: SubtitleTrack[];
     withResolution(resolution: { width?: string; height?: string }): VideoTrack[];
     withVideoQuality(quality: number | string): VideoTrack[];
-    withAudioLanguages(languages: string[]): AudioTrack[];
+    withAudioLanguages(languages: string[], maxTracksPerLanguage?: number): AudioTrack[];
     withSubtitleLanguages(languages: string[]): SubtitleTrack[];
   };
 }
