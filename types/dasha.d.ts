@@ -78,6 +78,7 @@ export interface AudioTrack extends Track {
   codec: AudioCodec;
   bitrate: Bitrate;
   language: string;
+  channels?: number;
   jointObjectCoding?: number;
   isDescriptive?: boolean;
 }
