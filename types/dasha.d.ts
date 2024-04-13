@@ -18,7 +18,6 @@ export interface Track {
   id: string;
   type: 'video' | 'audio' | 'text';
   segments: Segment[];
-  bitrate: Bitrate;
   size?: Size;
   label?: string;
   protection?: TrackProtection;
@@ -63,6 +62,7 @@ export type DynamicRange = 'SDR' | 'HLG' | 'HDR10' | 'HDR10+' | 'DV';
 export interface VideoTrack extends Track {
   type: 'video';
   codec: VideoCodec;
+  bitrate: Bitrate;
   width: number;
   height: number;
   quality: '144p' | '240p' | '360p' | '480p' | '720p' | '1080p' | '2160p' | '4320p' | string;
@@ -76,6 +76,7 @@ export type AudioCodec = 'AAC' | 'DD' | 'DD+' | 'OPUS' | 'VORB' | 'DTS' | 'ALAC'
 export interface AudioTrack extends Track {
   type: 'audio';
   codec: AudioCodec;
+  bitrate: Bitrate;
   language: string;
   jointObjectCoding?: number;
   isDescriptive?: boolean;
