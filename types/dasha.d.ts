@@ -50,9 +50,9 @@ export interface Segment {
 }
 
 export interface TrackProtection {
-  common?: { id: string; value: 'cenc' | 'cbcs'; keyId?: string };
+  common?: { id: string; value: 'cenc' | 'cbcs'; defaultKeyId?: string };
   playready?: { id: string; pssh?: string; value?: string };
-  widevine?: { id: string; pssh: string };
+  widevine?: { id: string; pssh: string; defaultKeyId?: string };
   fairplay?: { keyFormat: string; uri: string; method: string };
 }
 
