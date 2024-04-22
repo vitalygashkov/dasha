@@ -1,4 +1,4 @@
-export function parse(text: string, url: string, fallbackLanguage?: string): Promise<Manifest>;
+export function parse(text: string, url?: string, fallbackLanguage?: string): Promise<Manifest>;
 
 export interface Manifest {
   duration?: number;
