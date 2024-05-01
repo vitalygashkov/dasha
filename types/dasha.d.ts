@@ -8,11 +8,18 @@ export interface Manifest {
     audios: AudioTrack[];
     subtitles: SubtitleTrack[];
     withResolution(resolution: { width?: string; height?: string }): VideoTrack[];
+    withVideoCodecs(codecs: VideoCodec[]): VideoTrack[];
     withVideoQuality(quality: number | string): VideoTrack[];
+    withAudioCodecs(codecs: AudioCodec[]): AudioTrack[];
     withAudioLanguages(languages: string[], maxTracksPerLanguage?: number): AudioTrack[];
     withSubtitleLanguages(languages: string[]): SubtitleTrack[];
   };
 }
+
+export function filterByResolution(resolution: { width?: string; height?: string }): VideoTrack[];
+export function filterByCodecs(tracks: VideoTrack[], codecs: VideoCodec[]): VideoTrack[];
+export function filterByCodecs(tracks: AudioTrack[], codecs: AudioCodec[]): AudioTrack[];
+export function filterByQuality(tracks: VideoTrack[], quality: number | string): VideoTrack[];
 
 export interface Track {
   id: string;
