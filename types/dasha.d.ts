@@ -20,6 +20,12 @@ export function filterByResolution(resolution: { width?: string; height?: string
 export function filterByCodecs(tracks: VideoTrack[], codecs: VideoCodec[]): VideoTrack[];
 export function filterByCodecs(tracks: AudioTrack[], codecs: AudioCodec[]): AudioTrack[];
 export function filterByQuality(tracks: VideoTrack[], quality: number | string): VideoTrack[];
+export function filterByLanguages(
+  tracks: AudioTrack[],
+  languages: string[],
+  maxTracksPerLanguage?: number
+): AudioTrack[];
+export function filterByChannels(tracks: AudioTrack[], channels: number | string): AudioTrack[];
 
 export interface Track {
   id: string;
