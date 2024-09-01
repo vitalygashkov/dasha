@@ -2,7 +2,7 @@
   "name": "dasha",
   "version": "3.0.4",
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
-  "description": "Parser for MPEG-DASH & HLS manifests",
+  "description": "Streaming manifest parser",
   "license": "AGPL-3.0",
   "keywords": [
     "mpeg",
@@ -11,7 +11,8 @@
     "adaptive",
     "mpd",
     "m3u8",
-    "manifest"
+    "manifest",
+    "playlist"
   ],
   "readmeFilename": "README.md",
   "repository": {
