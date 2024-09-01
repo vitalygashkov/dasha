@@ -4,7 +4,7 @@
 [![npm downloads/month](https://img.shields.io/npm/dm/dasha?style=flat&color=white)](https://www.npmjs.com/package/dasha)
 [![npm downloads](https://img.shields.io/npm/dt/dasha?style=flat&color=white)](https://www.npmjs.com/package/dasha)
 
-Библиотека для парсинга MPEG-DASH и HLS манифестов. Создана с целью получения упрощенного представления, удобного для дальнейшей загрузки сегментов.
+Библиотека для парсинга MPEG-DASH (.mpd) и HLS (.m3u8) манифестов. Создана с целью получения упрощенного представления, удобного для дальнейшей загрузки сегментов.
 
 <div align="left">
   <a href="https://github.com/vitalygashkov/dasha/tree/main/README.md">English</a> •
