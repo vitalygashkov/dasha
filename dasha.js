@@ -2,7 +2,13 @@
 
 const dash = require('./lib/dash');
 const hls = require('./lib/hls');
-const { filterByResolution, filterByQuality, filterByCodecs } = require('./lib/track');
+const {
+  filterByResolution,
+  filterByQuality,
+  filterByCodecs,
+  filterByLanguages,
+  filterByChannels,
+} = require('./lib/track');
 
 const parse = (text, url, fallbackLanguage) => {
   if (text.includes('<MPD')) return dash.parseManifest(text, url, fallbackLanguage);
@@ -10,4 +16,11 @@ const parse = (text, url, fallbackLanguage) => {
   else throw new Error('Invalid manifest');
 };
 
-module.exports = { parse, filterByResolution, filterByQuality, filterByCodecs };
+module.exports = {
+  parse,
+  filterByResolution,
+  filterByQuality,
+  filterByCodecs,
+  filterByLanguages,
+  filterByChannels,
+};
