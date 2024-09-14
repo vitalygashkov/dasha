@@ -1,15 +1,10 @@
 # dasha
 
-[![npm version](https://img.shields.io/npm/v/dasha?style=flat&color=white)](https://www.npmjs.com/package/dasha)
-[![npm downloads/month](https://img.shields.io/npm/dm/dasha?style=flat&color=white)](https://www.npmjs.com/package/dasha)
-[![npm downloads](https://img.shields.io/npm/dt/dasha?style=flat&color=white)](https://www.npmjs.com/package/dasha)
+[![npm version](https://img.shields.io/npm/v/dasha?style=flat&color=black)](https://www.npmjs.com/package/dasha)
+[![npm downloads/month](https://img.shields.io/npm/dm/dasha?style=flat&color=black)](https://www.npmjs.com/package/dasha)
+[![npm downloads](https://img.shields.io/npm/dt/dasha?style=flat&color=black)](https://www.npmjs.com/package/dasha)
 
 Library for parsing MPEG-DASH (.mpd) and HLS (.m3u8) manifests. Made with the purpose of obtaining a simplified representation convenient for further downloading of segments.
-
-<div align="left">
-  <span>English</span> •
-  <a href="https://github.com/vitalygashkov/dasha/tree/main/README.ru.md">Pусский</a>
-</div>
 
 ## Install
 
