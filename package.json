@@ -1,8 +1,8 @@
 {
   "name": "dasha",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
-  "description": "Parser for MPEG-DASH & HLS manifests",
+  "description": "Streaming manifest parser",
   "license": "AGPL-3.0",
   "keywords": [
     "mpeg",
@@ -11,7 +11,8 @@
     "adaptive",
     "mpd",
     "m3u8",
-    "manifest"
+    "manifest",
+    "playlist"
   ],
   "readmeFilename": "README.md",
   "repository": {
@@ -45,16 +46,16 @@
     "build:bun": "bun build ./dasha.js --outdir ./dist --format cjs"
   },
   "dependencies": {
-    "m3u8-parser": "^7.1.0"
+    "m3u8-parser": "^7.2.0"
   },
   "devDependencies": {
-    "@types/node": "^22.0.0",
+    "@types/node": "^22.5.5",
     "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-import-x": "^3.1.0",
-    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-import-x": "^4.2.1",
+    "eslint-plugin-prettier": "^5.2.1",
     "prettier": "^3.3.3",
-    "tsup": "^8.2.3",
-    "typescript": "^5.5.4"
+    "tsup": "^8.2.4",
+    "typescript": "^5.6.2"
   }
 }
