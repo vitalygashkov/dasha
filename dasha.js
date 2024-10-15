@@ -11,7 +11,8 @@ const {
 } = require('./lib/track');
 
 const parse = (text, url, fallbackLanguage) => {
-  if (text.includes('<MPD')) return dash.parseManifest(text, url, fallbackLanguage);
+  if (text.includes('<MPD'))
+    return dash.parseManifest(text, url, fallbackLanguage);
   else if (text.includes('#EXTM3U')) return hls.parseManifest(text, url);
   else throw new Error('Invalid manifest');
 };

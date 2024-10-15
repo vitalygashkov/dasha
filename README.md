@@ -18,7 +18,8 @@ npm i dasha
 import fs from 'node:fs/promises';
 import { parse } from 'dasha';
 
-const url = 'https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd';
+const url =
+  'https://dash.akamaized.net/dash264/TestCases/1a/sony/SNE_DASH_SD_CASE1A_REVISED.mpd';
 const body = await fetch(url).then((res) => res.text());
 const manifest = await parse(body, url);
 

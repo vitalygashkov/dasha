@@ -38,10 +38,10 @@
   "scripts": {
     "test": "node --test",
     "types": "tsc -p tsconfig.json",
-    "lint": "eslint \"**/*.js\" --fix",
-    "lint:check": "eslint \"**/*.js\"",
-    "format": "prettier --loglevel warn --write \"**/*.{ts,js,json,yaml}\"",
-    "format:check": "prettier --loglevel warn --check \"**/*.{ts,js,json,yaml}\"",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
+    "format": "prettier --log-level warn --write .",
+    "format:check": "prettier --log-level warn --check .",
     "build": "tsup ./dasha.js --format cjs",
     "build:bun": "bun build ./dasha.js --outdir ./dist --format cjs"
   },
