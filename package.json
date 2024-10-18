@@ -2,10 +2,11 @@
   "name": "dasha",
   "version": "3.0.5",
   "description": "Streaming manifest parser",
-  "main": "dasha.js",
+  "main": "dist/dasha.js",
+  "module": "dist/dasha.mjs",
   "types": "types/dasha.d.ts",
   "files": [
-    "lib",
+    "dist",
     "types"
   ],
   "scripts": {
@@ -13,8 +14,8 @@
     "types": "tsc -p tsconfig.json",
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
-    "build": "tsup ./dasha.js --format cjs",
-    "build:bun": "bun build ./dasha.js --outdir ./dist --format cjs"
+    "build": "tsup dasha.js --format esm,cjs --minify",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
