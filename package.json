@@ -1,10 +1,7 @@
 {
   "name": "dasha",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "description": "Streaming manifest parser",
-  "main": "dist/dasha.js",
-  "module": "dist/dasha.mjs",
-  "types": "types/dasha.d.ts",
   "files": [
     "dist",
     "types"
@@ -48,6 +45,18 @@
       "url": "https://www.patreon.com/vitalygashkov"
     }
   ],
+  "exports": {
+    ".": {
+      "require": {
+        "types": "./types/dasha.d.ts",
+        "default": "./dist/dasha.js"
+      },
+      "import": {
+        "types": "./types/dasha.d.ts",
+        "default": "./dist/dasha.mjs"
+      }
+    }
+  },
   "engines": {
     "node": "20 || 21 || 22"
   },
@@ -55,9 +64,9 @@
     "m3u8-parser": "^7.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.12.0",
-    "@types/node": "^22.7.5",
-    "eslint": "^9.12.0",
+    "@eslint/js": "^9.13.0",
+    "@types/node": "^22.7.9",
+    "eslint": "^9.13.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "globals": "^15.11.0",
