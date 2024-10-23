@@ -32,7 +32,7 @@
     "playlist"
   ],
   "author": "Vitaly Gashkov <vitalygashkov@vk.com>",
-  "license": "AGPL-3.0",
+  "license": "MIT",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/vitalygashkov/dasha/issues",
