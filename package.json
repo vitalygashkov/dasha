@@ -12,7 +12,7 @@
     "lint": "eslint . && prettier --check .",
     "fix": "eslint . --fix && prettier --write .",
     "build": "tsup dasha.js --format esm,cjs --minify",
-    "prepublishOnly": "npm run build"
+    "prepublish": "npm run build"
   },
   "main": "./dist/dasha.js",
   "types": "./types/dasha.d.ts",
