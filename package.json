@@ -47,14 +47,6 @@
       "url": "https://www.patreon.com/vitalygashkov"
     }
   ],
-  "exports": {
-    ".": {
-      "require": {
-        "types": "./types/dasha.d.ts",
-        "default": "./dist/dasha.js"
-      }
-    }
-  },
   "engines": {
     "node": "20 || 21 || 22"
   },
