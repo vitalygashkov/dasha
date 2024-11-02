@@ -1,6 +1,6 @@
 {
   "name": "dasha",
-  "version": "3.1.0",
+  "version": "3.1.1",
   "description": "Streaming manifest parser",
   "files": [
     "dist",
@@ -14,6 +14,8 @@
     "build": "tsup dasha.js --format esm,cjs --minify",
     "prepublishOnly": "npm run build"
   },
+  "main": "./dist/dasha.js",
+  "types": "./types/dasha.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/vitalygashkov/dasha"
@@ -50,10 +52,6 @@
       "require": {
         "types": "./types/dasha.d.ts",
         "default": "./dist/dasha.js"
-      },
-      "import": {
-        "types": "./types/dasha.d.ts",
-        "default": "./dist/dasha.mjs"
       }
     }
   },
