@@ -8,5 +8,5 @@ test('axinom manifest parsing', async () => {
     'https://media.axprod.net/TestVectors/v7-MultiDRM-SingleKey/Manifest_1080p.mpd';
   const text = load('axinom.mpd');
   const manifest = await parse(text, url);
-  strictEqual(manifest.tracks.all.length, 1);
+  strictEqual(manifest.tracks.all.length, 23);
 });
