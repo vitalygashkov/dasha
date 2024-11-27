@@ -16,5 +16,9 @@ test('axinom manifest parsing', async () => {
     'https://media.axprod.net/TestVectors/v7-MultiDRM-SingleKey/5/1.m4s',
   );
 
+  const firstSubtitleTrack = manifest.tracks.subtitles[0];
+  strictEqual(firstSubtitleTrack.codec, 'WVTT');
+  strictEqual(firstSubtitleTrack.language, 'en');
+
   strictEqual(manifest.tracks.all.length, 23);
 });
