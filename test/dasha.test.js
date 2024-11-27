@@ -1,10 +1,8 @@
 const { test } = require('node:test');
 const { strictEqual } = require('node:assert');
-const { readFileSync } = require('node:fs');
 const { getQualityLabel } = require('../lib/util');
 const { parse } = require('../dasha');
-
-const load = (path) => readFileSync(path, 'utf8');
+const { load } = require('./utils');
 
 test('get video quality label', () => {
   strictEqual(getQualityLabel({ width: 1920, height: 804 }), '1080p');
@@ -22,7 +20,7 @@ test('DASH: parse with URL parameter', async () => {
 });
 
 test('DASH: parse without URL parameter', async () => {
-  const text = load('./test/cr.mpd');
+  const text = load('cr.mpd');
   const manifest = await parse(text);
   strictEqual(manifest.tracks.all.length, 8);
   const initUrl =
