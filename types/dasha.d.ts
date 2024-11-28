@@ -145,8 +145,7 @@ export type SubtitleCodec =
   | 'TTML'
   | 'VTT'
   | 'STPP'
-  | 'fTTML'
-  | 'fVTT';
+  | 'WVTT';
 
 export interface SubtitleTrack extends Track {
   type: 'text';
