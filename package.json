@@ -15,7 +15,6 @@
     "prepublishOnly": "npm run build"
   },
   "main": "./dist/dasha.js",
-  "module": "./dist/dasha.mjs",
   "types": "./types/dasha.d.ts",
   "repository": {
     "type": "git",
