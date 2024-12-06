@@ -1,9 +1,10 @@
 {
   "name": "dasha",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "Streaming manifest parser",
   "files": [
-    "dist",
+    "dasha.js",
+    "lib",
     "types"
   ],
   "scripts": {
@@ -14,8 +15,7 @@
     "build": "tsup dasha.js --format esm,cjs",
     "prepublishOnly": "npm run build"
   },
-  "main": "./dist/dasha.js",
-  "module": "./dist/dasha.mjs",
+  "main": "dasha.js",
   "types": "./types/dasha.d.ts",
   "repository": {
     "type": "git",
@@ -55,13 +55,13 @@
     "m3u8-parser": "^7.2.0"
   },
   "devDependencies": {
-    "@eslint/js": "^9.15.0",
-    "@types/node": "^22.10.0",
-    "eslint": "^9.15.0",
+    "@eslint/js": "^9.16.0",
+    "@types/node": "^22.10.1",
+    "eslint": "^9.16.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
-    "globals": "^15.12.0",
-    "prettier": "^3.4.1",
+    "globals": "^15.13.0",
+    "prettier": "^3.4.2",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2"
   }

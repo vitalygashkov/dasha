@@ -139,13 +139,14 @@ export interface AudioTrack extends Track {
 }
 
 export type SubtitleCodec =
-  | 'SRT'
-  | 'SSA'
-  | 'ASS'
-  | 'TTML'
-  | 'VTT'
-  | 'STPP'
-  | 'WVTT';
+  | 'SRT' // https://wikipedia.org/wiki/SubRip
+  | 'SSA' // https://wikipedia.org/wiki/SubStation_Alpha
+  | 'ASS' // https://wikipedia.org/wiki/SubStation_Alpha#Advanced_SubStation_Alpha=
+  | 'TTML' // https://wikipedia.org/wiki/Timed_Text_Markup_Language
+  | 'VTT' // https://wikipedia.org/wiki/WebVTT
+  // MPEG-DASH box-encapsulated subtitle formats
+  | 'STPP' // https://www.w3.org/TR/2018/REC-ttml-imsc1.0.1-20180424
+  | 'WVTT'; // https://www.w3.org/TR/webvtt1
 
 export interface SubtitleTrack extends Track {
   type: 'text';
