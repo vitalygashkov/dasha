@@ -9,6 +9,7 @@ const {
   filterByLanguages,
   filterByChannels,
 } = require('./lib/track');
+const { SUBTITLE_CODECS } = require('./lib/subtitle');
 
 const parse = (text, url, fallbackLanguage) => {
   if (text.includes('<MPD'))
@@ -24,4 +25,5 @@ module.exports = {
   filterByCodecs,
   filterByLanguages,
   filterByChannels,
+  SUBTITLE_CODECS,
 };
