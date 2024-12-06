@@ -13,7 +13,7 @@ test('axinom manifest parsing', async () => {
   const firstVideoSegment = firstVideoTrack.segments[1]; // Skip init
   strictEqual(
     firstVideoSegment.url,
-    'https://media.axprod.net/TestVectors/v7-MultiDRM-SingleKey/5/1.m4s',
+    'https://media.axprod.net/TestVectors/v7-MultiDRM-SingleKey/5/0001.m4s',
   );
 
   const firstSubtitleTrack = manifest.tracks.subtitles[0];
